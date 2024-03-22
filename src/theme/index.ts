@@ -7,7 +7,7 @@ export default {
     text_black: '#000000',
 
     yellow_bg: '#FAF3DC',
-    dark_yellow: "#FFD02C",
+    dark_yellow: '#FFD02C',
 
     custom_red: '#F22828',
     custom_grey: '#00000099',
@@ -17,6 +17,6 @@ export default {
     inter_regular: 'Inter_400Regular',
     inter_bold: 'Inter_700Bold',
     roboto_regular: 'Roboto_400Regular',
-    roboto_semi_bold: 'Roboto_500Medium',
+    roboto_semi_bold: 'Roboto_500Medium'
   }
-}
+};
