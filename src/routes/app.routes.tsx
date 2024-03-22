@@ -27,7 +27,6 @@ export function AppRoutes() {
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={({ route }) => ({
-          tabBarLabel: route.name,
           tabBarIcon: ({ color, size }) => {
             switch (route.name) {
               case 'Home':
