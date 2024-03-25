@@ -9,6 +9,7 @@ export const Container = styled.View`
 `;
 
 export const ItemTab = styled.TouchableOpacity`
+  width: 100%;
   align-items: center;
   justify-content: center;
   border-top: 2px solid;
