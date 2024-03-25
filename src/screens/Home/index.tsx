@@ -12,7 +12,7 @@ import { TblRepository } from "../../database/tables/TblRepository";
 
 export function Home() {
   const { requestDataRepository, removeRepositoryOfList } = useRepository();
-  const { setListRepositories, listRepositories } = useRepositoryData();
+  const { setListRepositories, listRepositories, getListRepositoriesDatabase } = useRepositoryData();
   const [paramGetRepos, setParamGetRepos] = useState<string>("");
   
   async function getRepos() {
@@ -36,7 +36,7 @@ export function Home() {
 
       TblRepository.set("tblRepository", insertDataRepository);
 
-      const jsonRepositories = TblRepository.getString("tblRepository");
+      getListRepositoriesDatabase();
 
       removeRepositoryOfList(item.id)
 
@@ -47,6 +47,7 @@ export function Home() {
 
 
   const renderCards = ({item}: {item: RepositoryModel}) => (
+    console.log('cheguei aqui dentro', item),
     <CardRepository 
       dataRepository={item} 
       disabled={true}
