@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-import { Container, ContentFlatList, Text } from "./styles";
-import { CustomButton } from "../../components/CustomButton";
-import { IRepository } from "../../interfaces/IRepository";
-import { useRepositoryData } from "../../hooks/useRepositoryData";
+import { Container, Content, ContentFlatList, Text } from "./styles";
 import { ListRepositories } from "../../components/ListRepositories";
 import { RepositoryModel } from "../../database/models/RepositoryModel";
 import { CardRepository } from "../../components/CardRepository";
-import { useBottomSheet } from "../../hooks/useBottomSheet";
+import { CustomHeader } from "../../components/CustomHeader";
+import { useRepository } from "../../hooks/useRepository";
+import { useRepositoryData } from "../../context/useRepositoryData";
+import { TblRepository } from "../../database/tables/TblRepository";
 
 
 export function Home() {
-  const { requestDataRepository } = useRepositoryData();
-  const [listRepos, setListRepos] = useState<RepositoryModel[]>([] as RepositoryModel[]);
-
+  const { requestDataRepository, removeRepositoryOfList } = useRepository();
+  const { setListRepositories, listRepositories } = useRepositoryData();
+  const [paramGetRepos, setParamGetRepos] = useState<string>("");
+  
   async function getRepos() {
     try {
 
-      const returnDataRepos = await requestDataRepository('appswefit');
+      const returnDataRepos = await requestDataRepository(paramGetRepos);
 
       if(returnDataRepos) {
-
-        setListRepos(returnDataRepos);
-        console.log('Quantidade da home:', returnDataRepos.length)
+        setListRepositories(returnDataRepos);
       }
 
     } catch (error) {
@@ -30,28 +29,43 @@ export function Home() {
     }
   } 
 
+  const handleFavorite = (item: RepositoryModel) => {
+    try {
+
+      const insertDataRepository = JSON.stringify(item);
+
+      TblRepository.set("tblRepository", insertDataRepository);
+
+      const jsonRepositories = TblRepository.getString("tblRepository");
+
+      removeRepositoryOfList(item.id)
+
+    } catch (error) {
+
+    }
+  };
+
 
   const renderCards = ({item}: {item: RepositoryModel}) => (
-    console.log(item), 
-    <CardRepository dataRepository={item}/>
+    <CardRepository 
+      dataRepository={item} 
+      disabled={true}
+      favorite={handleFavorite}
+    />
   )
 
 
   return (
     <Container>
-      <ContentFlatList>
-        <ListRepositories 
-          data={listRepos}
-          renderItem={renderCards}
-        />
-      </ContentFlatList>
-      <CustomButton 
-        invertColors={false}
-        loading={false}
-        onPress={getRepos}
-        title="Buscar Repos"
-        width={`${100}%`}
-      />
+      <CustomHeader getRepos={getRepos} setParamGetRepos={setParamGetRepos} paramGetRepos={paramGetRepos}/>
+      <Content>
+        <ContentFlatList>
+          <ListRepositories 
+            data={listRepositories}
+            renderItem={renderCards}
+          />
+        </ContentFlatList>
+      </Content>
     </Container>
   )
 }
