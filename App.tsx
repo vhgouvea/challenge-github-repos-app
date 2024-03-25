@@ -10,6 +10,10 @@ import {
 } from '@expo-google-fonts/dev';
 import theme from './src/theme';
 import { Routes } from './src/routes';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { ApiProvider } from './src/context/useApi';
+import { RepositoryDataProvider } from './src/context/useRepositoryData';
 
 export default function App() {
 
@@ -22,7 +26,15 @@ export default function App() {
   
   return (
     <ThemeProvider theme={theme}>
-        {fontsLoaded ? <Routes /> : <ActivityIndicator />}
+      <GestureHandlerRootView style={{flex: 1}}>
+        <ApiProvider>
+          <RepositoryDataProvider>
+            <BottomSheetModalProvider>
+              {fontsLoaded ? <Routes /> : <ActivityIndicator />}
+            </BottomSheetModalProvider>
+          </RepositoryDataProvider>
+        </ApiProvider>
+      </GestureHandlerRootView>
     </ThemeProvider>
   )
 }
