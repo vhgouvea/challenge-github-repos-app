@@ -24,7 +24,7 @@ export function AppRoutes() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
-        header: () => <CustomHeader />,
+        // header: () => <CustomHeader />,
         tabBarIcon: ({ color, size }) => {
           switch (route.name) {
             case 'Home':
@@ -35,7 +35,7 @@ export function AppRoutes() {
               return null;
           }
         },
-        headerShown: true,
+        headerShown: false,
         headerTransparent: true,
         headerTitle: '',
         tabBarButton: props => <TabBarButton routeName={route.name} {...props}/>,
