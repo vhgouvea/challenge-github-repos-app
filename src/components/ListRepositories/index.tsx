@@ -7,9 +7,7 @@ interface Props {
 }
 
 export function ListRepositories({ data, renderItem }: Props) {
-  
-  console.log(data, 'to aqui dentro da brincadeira')
-  console.log(renderItem, 'renderizando a lista')
+
   return (
     <RepositoryList 
       data={data}
