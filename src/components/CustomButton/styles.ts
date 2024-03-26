@@ -14,11 +14,17 @@ export const Container = styled.TouchableOpacity<Props>`
   border-radius: ${RFValue(4)}px;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   background-color: ${({ theme, invertColors }) => invertColors ? theme.colors.white : theme.colors.custom_blue };
+`;
+
+export const ContentButton = styled.View`
+  
 `;
 
 export const Text = styled.Text<Props>`
   font-size: ${RFValue(15)}px;
   font-family: ${({ theme }) => theme.fonts.roboto_semi_bold};
   color: ${({ theme, invertColors }) => invertColors ? theme.colors.custom_blue : theme.colors.white };
+  line-height: ${RFValue(26)}px;
 `;

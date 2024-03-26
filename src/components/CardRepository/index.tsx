@@ -1,23 +1,20 @@
-import { Text } from "react-native";
 import { 
   Button, 
   Container, 
   ContentFooter, 
   ContentHeader, 
   ContentLanguage, 
-  ContentStargazers, 
-  ContentText, 
+  ContentStargazers,
   Description, 
   Elipse, 
   Img, 
   Line, 
-  TextButton, 
-  Title, 
-  TitleBold 
+  TextButton
 } from "./styles";
 import { RepositoryModel } from "../../database/models/RepositoryModel";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
+import { TitleWithBold } from "../TitleWithBold";
 
 
 interface Props {
@@ -27,28 +24,12 @@ interface Props {
   showDetails: () => void;
 }
 
-interface PropsTitleWithBold {
-  text: string;
-
-}
-
 export function CardRepository({ dataRepository, disabled, favorite, showDetails }: Props) {
   const { colors } = useTheme();
 
   const handleFavorite = () => {
     favorite(dataRepository);
   };
-
-  const TitleWithBold = ({text} : PropsTitleWithBold) => {
-    const steps = text.split('/');
-    return (
-      <ContentText>
-        <Title>{steps[0]}/</Title>
-        <TitleBold>{steps[1]}</TitleBold>
-      </ContentText>
-    );
-  };
-
 
   return (
     <Container onPress={showDetails} disabled={disabled}>
@@ -57,7 +38,7 @@ export function CardRepository({ dataRepository, disabled, favorite, showDetails
         <Img source={{uri: dataRepository.avatar_url }} resizeMode="contain"/>
       </ContentHeader>
       <Line />
-      <Description>{dataRepository.description !== null ? dataRepository.description : "Sem descrição"}</Description>
+      <Description>{dataRepository.description !== null ? dataRepository.description : "Nenhuma descrição encontrada"}</Description>
       <ContentFooter>
         {disabled && (
           <Button onPress={handleFavorite}>
@@ -65,7 +46,7 @@ export function CardRepository({ dataRepository, disabled, favorite, showDetails
             <TextButton>Favoritar</TextButton>
           </Button>
         )}
-        
+
         <ContentStargazers>
           <AntDesign name="star" color={colors.dark_yellow} size={20} />
           <Description>{dataRepository.stargazers_count}</Description>
