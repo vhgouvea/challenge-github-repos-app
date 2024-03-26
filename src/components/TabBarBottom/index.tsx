@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
-import { Container, Icon, ItemTab } from './styles';
+import { Container, Icon, ItemTab, Text } from './styles';
 import { ParamListBase, RouteProp, useNavigation, useNavigationState } from '@react-navigation/native';
-import { FontAwesome6 } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 
 
 interface Props extends BottomTabBarButtonProps {
-  colors: string;
   routeName: string;
 }
 
 
 
-const TabBarButton = ({ children, onPress, colors, routeName }: Props) => {
+const TabBarButton = ({ children, onPress, routeName }: Props) => {
   const navigation = useNavigation();
   const [borderTop, setBorderTop] = useState();
-  const { colors: color, fonts } = useTheme();
+  const { colors, fonts } = useTheme();
   const currentRoute = useNavigationState(state => state.routes[state.index].name); // Obtém a rota atual
 
 
@@ -35,26 +33,25 @@ const TabBarButton = ({ children, onPress, colors, routeName }: Props) => {
   const getTabBarIcon = (routeName: string) => {
     switch (routeName) {
       case 'Home':
-        return <FontAwesome6 name="github" color={routeName === currentRoute ? color.custom_blue : color.custom_grey} size={24} />;
+        return <AntDesign name="github" color={routeName === currentRoute ? colors.custom_blue : colors.custom_grey} size={24} />;
       case 'Favorite':
-        return <FontAwesome6 name="star" color={routeName === currentRoute ? color.custom_blue : color.custom_grey} size={24} />;
+        return <AntDesign name="star" color={routeName === currentRoute ? colors.custom_blue : colors.custom_grey} size={24} />;
       default:
         return null;
     }
   };
 
 
-  const handlePress = () => {
-    // ... Ajuste o estilo do botão antes de executar a função onPress
+  const handleNavigate = () => {
     navigation.navigate(routeName as never);
 
    };
 
  return (
     <Container>
-      <ItemTab onPress={handlePress} >
+      <ItemTab onPress={handleNavigate} >
         {getTabBarIcon(routeName)}
-        <Text style={{ color: routeName === currentRoute ? color.custom_blue : color.custom_grey }}>
+        <Text style={{ color: routeName === currentRoute ? colors.custom_blue : colors.custom_grey }}>
           {getTabBarLabel(routeName)}
           </Text>
       </ItemTab>

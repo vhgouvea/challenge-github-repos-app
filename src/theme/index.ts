@@ -11,7 +11,8 @@ export default {
 
     custom_red: '#F22828',
     custom_grey: '#00000099',
-    custom_blue: '#1976D2'
+    custom_blue: '#1976D2',
+    custom_light_grey: '#DADADA'
   },
   fonts: {
     inter_regular: 'Inter_400Regular',
