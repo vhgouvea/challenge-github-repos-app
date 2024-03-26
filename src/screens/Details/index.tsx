@@ -15,7 +15,7 @@ interface DetailsProps {
   route: DetailsScreenRouteProp;
 }
 export function Details({ route }: DetailsProps) {
-  const [favorite, setFavorite] = useState<boolean>(false);
+  const [favorite, setFavorite] = useState<boolean>(true);
   const steps = route.params.repository.full_name.split('/');
 
   async function navigateToRepository() {
