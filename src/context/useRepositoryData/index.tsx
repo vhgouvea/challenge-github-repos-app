@@ -30,11 +30,8 @@ const RepositoryDataProvider = ({ children }: { children: ReactNode }) => {
   const getListRepositoriesDatabase = useCallback(() => {
     const jsonRepositories = TblRepository.getString("tblRepository");
 
-      console.log(jsonRepositories, 'banco')
-
       if(jsonRepositories) {
         const getListFavorities: RepositoryModel[] = JSON.parse(jsonRepositories);
-        console.log(getListFavorities)
         setListRepositoriesDatabase(getListFavorities);
       }
   }, [])
