@@ -1,36 +1,36 @@
 
-import { Text } from "react-native";
+import { Button, FlatList } from "react-native";
 import { Container, Content, ContentFlatList } from "./styles";
-import { useEffect, useState } from "react";
-import { CustomButton } from "../../components/CustomButton";
+import { useCallback, useEffect } from "react";
 import { useRepositoryData } from "../../context/useRepositoryData";
 import { CustomHeader } from "../../components/CustomHeader";
 import { RepositoryModel } from "../../database/models/RepositoryModel";
 import { CardRepository } from "../../components/CardRepository";
 import { ListRepositories } from "../../components/ListRepositories";
-import { TblRepository } from "../../database/tables/TblRepository";
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 
 
 export function Favorite() {
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const { listRepositoriesDatabase, getListRepositoriesDatabase } = useRepositoryData();
 
   useEffect(() => {
-    function getListDatabase() {
-      getListRepositoriesDatabase();
-
-      console.log(listRepositoriesDatabase, 'listinha')
-    }
-    getListDatabase();
+    getListRepositoriesDatabase();
   }, [])
-  
-  const renderCards = ({item}: {item: RepositoryModel}) => (
-    console.log(item, 'to aqui dentro'),
-    <CardRepository 
-      dataRepository={item} 
-      disabled={true}
-      favorite={() => {}}
-    />
-  )
+
+  function navigateToDetails(repository: RepositoryModel) {
+    navigate('Detalhes', { repository: repository });
+  }
+
+  const renderCards =  useCallback(({item}: {item: RepositoryModel}) => { 
+    return(
+      <CardRepository 
+        dataRepository={item} 
+        disabled={false}
+        favorite={() => {}}
+        showDetails={() => {navigateToDetails(item)}}
+      />
+  )}, []);
 
   return (
     <Container>

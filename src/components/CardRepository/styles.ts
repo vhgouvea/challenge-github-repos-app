@@ -11,24 +11,6 @@ export const Container = styled.TouchableOpacity`
   gap: ${RFValue(16)}px;
 `;
 
-export const Title = styled.Text`
-  font-size: ${RFValue(12)}px;
-  font-family: ${({ theme }) => theme.fonts.inter_regular};
-  color: ${({ theme }) => theme.colors.text_title};
-  line-height: ${RFValue(14.52)}px;
-`;
-
-export const TitleBold = styled.Text`
-  font-size: ${RFValue(12)}px;
-  font-family: ${({ theme }) => theme.fonts.inter_bold};
-  color: ${({ theme }) => theme.colors.text_title};
-  line-height: ${RFValue(14.52)}px;
-`;
-
-export const ContentText = styled.View`
-  flex-direction: row;
-`;
-
 export const ContentHeader = styled.View`
   height: ${RFValue(29)}px;
   flex-direction: row;

@@ -3,6 +3,7 @@ import { IRepository } from "../../interfaces/IRepository"
 import { useApi } from "../../context/useApi";
 import { RepositoryModel } from "../../database/models/RepositoryModel";
 import { useRepositoryData } from "../../context/useRepositoryData";
+import { TblRepository } from "../../database/tables/TblRepository";
 
 
 
@@ -12,13 +13,11 @@ export function useRepository() {
 
   async function requestDataRepository(repository: string) {
     try {
-      const listRepos: RepositoryModel[] = [];
 
       const { data: repositories } = await apiRequest.get<IRepository[]>(`${repository}/repos`);
-  
-      for(const repository of repositories) {
-  
-        const repos: RepositoryModel = {
+      
+      const listRepos: RepositoryModel[] = repositories.map(repository => {
+        return {
           id: repository.id,
           full_name: repository.full_name,
           description: repository.description,
@@ -27,11 +26,8 @@ export function useRepository() {
           language: repository.language,
           html_url: repository.html_url
         }
+      });
   
-
-        listRepos.push(repos)
-      }
-
       return listRepos;
 
     } catch (error) {
@@ -40,26 +36,38 @@ export function useRepository() {
   }
 
   function removeRepositoryOfList(id: number) {
-    const index = listRepositories.findIndex(repo => repo.id === id);
 
-    if(index !== -1) {
-      const newListRepos = [...listRepositories];
-      
-      newListRepos.splice(index, 1);
+    const newListRepos = listRepositories.filter(repo => repo.id !== id);
 
-      setListRepositories(newListRepos);
-    }
+    setListRepositories(newListRepos);
   }
 
   function addRepositoryOfList(id: number) {
+    
+  }
 
+  function returnFilteredListRepos(list: RepositoryModel[]) {
+    try {
+      const jsonRepositories = TblRepository.getString('tblRepository');
+
+      const getListDatabase: RepositoryModel[] = JSON.parse(jsonRepositories || '[]');
+  
+
+      const newListRepos = list.filter(repo => !getListDatabase.some(dbRepo => dbRepo.id === repo.id));
+  
+
+      return newListRepos;
+    } catch (error) {
+      console.error('Erro ao filtrar repositórios:', error);
+    }
   }
 
 
   return {
     requestDataRepository,
     removeRepositoryOfList,
-    addRepositoryOfList
+    addRepositoryOfList,
+    returnFilteredListRepos
   }
 
 }
