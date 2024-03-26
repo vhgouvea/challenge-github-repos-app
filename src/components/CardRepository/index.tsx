@@ -24,6 +24,7 @@ interface Props {
   dataRepository: RepositoryModel;
   disabled: boolean;
   favorite: (item: RepositoryModel) => void;
+  showDetails: () => void;
 }
 
 interface PropsTitleWithBold {
@@ -31,7 +32,7 @@ interface PropsTitleWithBold {
 
 }
 
-export function CardRepository({ dataRepository, disabled, favorite }: Props) {
+export function CardRepository({ dataRepository, disabled, favorite, showDetails }: Props) {
   const { colors } = useTheme();
 
   const handleFavorite = () => {
@@ -50,7 +51,7 @@ export function CardRepository({ dataRepository, disabled, favorite }: Props) {
 
 
   return (
-    <Container onPress={() => {}} disabled={disabled}>
+    <Container onPress={showDetails} disabled={disabled}>
       <ContentHeader>
         <TitleWithBold text={dataRepository.full_name}/>
         <Img source={{uri: dataRepository.avatar_url }} resizeMode="contain"/>
@@ -58,10 +59,12 @@ export function CardRepository({ dataRepository, disabled, favorite }: Props) {
       <Line />
       <Description>{dataRepository.description !== null ? dataRepository.description : "Sem descrição"}</Description>
       <ContentFooter>
-        <Button onPress={handleFavorite}>
-          <AntDesign name="star" color={colors.dark_yellow} size={20} />
-          <TextButton>Favoritar</TextButton>
-        </Button>
+        {disabled && (
+          <Button onPress={handleFavorite}>
+            <AntDesign name="star" color={colors.dark_yellow} size={20} />
+            <TextButton>Favoritar</TextButton>
+          </Button>
+        )}
         
         <ContentStargazers>
           <AntDesign name="star" color={colors.dark_yellow} size={20} />

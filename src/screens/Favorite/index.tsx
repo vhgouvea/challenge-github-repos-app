@@ -20,7 +20,7 @@ export function Favorite() {
     return(
       <CardRepository 
         dataRepository={item} 
-        disabled={true}
+        disabled={false}
         favorite={() => {}}
         showDetails={() => {}}
       />

@@ -58,7 +58,7 @@ export function Home() {
   const renderCards = ({item}: {item: RepositoryModel}) => (
     <CardRepository 
       dataRepository={item} 
-      disabled={false}
+      disabled={true}
       favorite={handleFavorite}
       showDetails={() => {}}
     />
