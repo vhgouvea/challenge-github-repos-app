@@ -1,6 +1,4 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { BottomSheetModal, BottomSheetScrollView, BottomSheetTextInput, BottomSheetView } from "@gorhom/bottom-sheet";
 
 import { 
   Container, 
@@ -17,10 +15,8 @@ import {
 import Gear from '../../assets/Vectorgear.png';
 import { CustomButton } from "../CustomButton";
 import { CustomInput } from "../CustomInput";
-import { AntDesign } from "@expo/vector-icons";
-import { useTheme } from "styled-components";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useRepositoryData } from "../../context/useRepositoryData";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 
 interface Props {
   getRepos: (param: string) => void;
@@ -30,21 +26,22 @@ interface Props {
 
 export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Props) {
 
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const bottomSheetRef = useRef<BottomSheetMethods>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['38%'], []);
+  // const snapPoints = useMemo(() => ['38%'], []);
+  const snapPoints = useMemo(() => ['25%'], []);
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
+    bottomSheetRef.current?.expand();
   }, []);
 
   const updateRepository = useCallback(async() => {
     try {
 
       getRepos(paramGetRepos)
-      bottomSheetModalRef.current?.close()
+      bottomSheetRef.current?.close()
 
     } catch (error) {
 
@@ -65,28 +62,33 @@ export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Prop
       </IconButton>
 
 
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={0}
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={-1}
         snapPoints={snapPoints}
+        enablePanDownToClose
+        keyboardBehavior='fillParent'
+        children={
+          <>
+            <ContentBottomSheet>
+
+            <TitleBottomSheet>Alterar usuário selecionado</TitleBottomSheet>
+
+            <CustomInput 
+              onChangeText={setParamGetRepos}
+              value={paramGetRepos}
+              placeholder="Nome do usuário"
+              keyboardType="default"
+            />
+            <ContentButtonBottomSheet>
+              <CustomButton width={`${48.5}%`} loading={false} onPress={() => {bottomSheetRef.current?.close()}} title="Cancelar" invertColors={true}/>
+              <CustomButton width={`${48.5}%`} loading={false} onPress={updateRepository} title="Salvar" invertColors={false}/>
+            </ContentButtonBottomSheet>
+            </ContentBottomSheet>
+          </>
+        }
       >
-        <ContentBottomSheet>
-
-          <TitleBottomSheet>Alterar usuário selecionado</TitleBottomSheet>
-
-          <CustomInput 
-            onChangeText={setParamGetRepos}
-            value={paramGetRepos}
-            placeholder="Nome do usuário"
-            keyboardType="default"
-          />
-          <ContentButtonBottomSheet>
-            <CustomButton width={`${48.5}%`} loading={false} onPress={() => {bottomSheetModalRef.current?.close()}} title="Cancelar" invertColors={true}/>
-            <CustomButton width={`${48.5}%`} loading={false} onPress={updateRepository} title="Salvar" invertColors={false}/>
-          </ContentButtonBottomSheet>
-        </ContentBottomSheet>
-        
-      </BottomSheetModal>
+      </BottomSheet>
     </Container>
   );
 }
