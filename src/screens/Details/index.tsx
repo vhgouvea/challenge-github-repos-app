@@ -4,6 +4,9 @@ import { Container, Content, ContentElipse, ContentFooter, ContentTitle, Descrip
 import { CustomButton } from "../../components/CustomButton";
 import { Linking } from "react-native";
 import { useTheme } from "styled-components";
+import { CustomButtonWithIcon } from "../../components/CustomButtonWithIcon";
+import { useCallback, useState } from "react";
+import { CustomSimpleButtonWithIcon } from "../../components/CustomSimpleButtonWithIcon";
 
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Detalhes'>;
@@ -12,14 +15,16 @@ interface DetailsProps {
   route: DetailsScreenRouteProp;
 }
 export function Details({ route }: DetailsProps) {
-  const { colors } = useTheme();
-  console.log(route, 'route')
-
+  const [favorite, setFavorite] = useState<boolean>(false);
   const steps = route.params.repository.full_name.split('/');
 
   async function navigateToRepository() {
     await Linking.openURL(route.params.repository.html_url);
   }
+
+  const handleFavoriteRepository = useCallback(() => {
+    console.log(favorite, 'favoritar')
+  }, [favorite])
 
   return (
     <Container>
@@ -35,16 +40,35 @@ export function Details({ route }: DetailsProps) {
         </ContentElipse>
       </Content>
       <ContentFooter>
-        <CustomButton 
+        <CustomButtonWithIcon 
           invertColors
           loading={false}
           onPress={navigateToRepository}
           title="Ver Repositório"
-          width={`${100}%`}
-          icon
           nameIcon="insert-link"
-          colorIcon={colors.custom_blue}
         />
+        {favorite ? (
+          <CustomSimpleButtonWithIcon 
+            loading={false}
+            onPress={() => {
+              setFavorite(!favorite),
+              handleFavoriteRepository()
+            }}
+            title="Desfavoritar"
+            nameIcon="star-border"
+          />
+        ) : (
+          <CustomButtonWithIcon 
+            invertColors={false}
+            loading={false}
+            onPress={() => {
+              setFavorite(!favorite),
+              handleFavoriteRepository()
+            }}
+            title="Favoritar"
+            nameIcon="star"
+          />
+        )}
       </ContentFooter>
     </Container>
   )

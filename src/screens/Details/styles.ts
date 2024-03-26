@@ -67,8 +67,6 @@ export const DescriptionElipse = styled.Text`
 
 export const ContentFooter = styled.View`
   width: 100%;
-  background-color: blue;
-  flex-direction: row;
   height: ${RFValue(126)}px;
   padding: ${RFValue(16)}px;
   gap: ${RFValue(10)}px;

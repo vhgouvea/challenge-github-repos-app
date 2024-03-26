@@ -12,7 +12,7 @@ import {
   TextButton
 } from "./styles";
 import { RepositoryModel } from "../../database/models/RepositoryModel";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 import { TitleWithBold } from "../TitleWithBold";
 
@@ -48,7 +48,7 @@ export function CardRepository({ dataRepository, disabled, favorite, showDetails
         )}
 
         <ContentStargazers>
-          <AntDesign name="star" color={colors.dark_yellow} size={20} />
+          <MaterialIcons name="star" color={colors.dark_yellow} size={20} />
           <Description>{dataRepository.stargazers_count}</Description>
         </ContentStargazers>
         
