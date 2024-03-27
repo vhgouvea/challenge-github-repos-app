@@ -1,13 +1,16 @@
-
-import { Button, FlatList } from "react-native";
-import { Container, Content, ContentFlatList } from "./styles";
 import { useCallback, useEffect } from "react";
-import { useRepositoryData } from "../../context/useRepositoryData";
-import { CustomHeader } from "../../components/CustomHeader";
-import { RepositoryModel } from "../../database/models/RepositoryModel";
-import { CardRepository } from "../../components/CardRepository";
-import { ListRepositories } from "../../components/ListRepositories";
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
+import { 
+  Container, 
+  Content, 
+  ContentFlatList
+} from "./styles";
+
+import { useRepositoryData } from "@context/useRepositoryData";
+import { CustomHeader } from "@components/CustomHeader";
+import { CardRepository } from "@components/CardRepository";
+import { ListRepositories } from "@components/ListRepositories";
+import { RepositoryModel } from "@database/models/RepositoryModel";
 
 
 export function Favorite() {

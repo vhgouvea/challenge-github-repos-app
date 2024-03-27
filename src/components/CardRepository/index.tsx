@@ -11,9 +11,10 @@ import {
   Line, 
   TextButton
 } from "./styles";
-import { RepositoryModel } from "../../database/models/RepositoryModel";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
+
+import { RepositoryModel } from "@database/models/RepositoryModel";
 import { TitleWithBold } from "../TitleWithBold";
 
 

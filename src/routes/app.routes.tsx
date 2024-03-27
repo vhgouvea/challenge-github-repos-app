@@ -1,13 +1,12 @@
 import React from "react";
-import { Feather, FontAwesome6 } from "@expo/vector-icons";
+import { FontAwesome6 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RouteProp } from "@react-navigation/native";
 
-import TabBarButton from "../components/TabBarBottom";
-import { CustomHeader } from "../components/CustomHeader";
+import TabBarButton from "@components/TabBarBottom";
 
-import { Favorite } from "../screens/Favorite";
-import { Home } from "../screens/Home";
+import { Favorite } from "@screens/Favorite";
+import { Home } from "@screens/Home";
 
 export type RootTabParamList = {
   Home: undefined;

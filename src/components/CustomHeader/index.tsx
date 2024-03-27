@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { BottomSheetModal, BottomSheetScrollView, BottomSheetTextInput, BottomSheetView } from "@gorhom/bottom-sheet";
+import React, { useCallback, useMemo, useRef } from "react";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 import { 
   Container, 
@@ -14,13 +13,8 @@ import {
   TitleBottomSheet
 } from "./styles";
 
-import Gear from '../../assets/Vectorgear.png';
 import { CustomButton } from "../CustomButton";
 import { CustomInput } from "../CustomInput";
-import { AntDesign } from "@expo/vector-icons";
-import { useTheme } from "styled-components";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useRepositoryData } from "../../context/useRepositoryData";
 
 interface Props {
   getRepos: (param: string) => void;
@@ -33,7 +27,7 @@ export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Prop
 
   const snapPoints = useMemo(() => ['50%'], []);
 
-  
+
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);

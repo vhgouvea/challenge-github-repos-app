@@ -1,8 +1,6 @@
-import { DimensionValue } from "react-native";
 import { Loading } from "../Loading";
 import { Container, Content, Icon, Text } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
-import { IconProps } from "@expo/vector-icons/build/createIconSet";
 
 interface Props {
   onPress: () => void;
