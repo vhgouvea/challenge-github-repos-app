@@ -4,6 +4,7 @@ import { RepositoryModel } from "@database/models/RepositoryModel";
 import { useRepositoryData } from "@context/useRepositoryData";
 import { TblRepository } from "@database/tables/TblRepository";
 import useToast from "@hooks/useToast";
+import { useBottomSheet } from "@context/useBottomSheet";
 
 
 
@@ -11,6 +12,30 @@ export function useRepository() {
   const { apiRequest } = useApi();
   const { showToast } = useToast();
   const { listRepositories, setListRepositories, setListRepositoriesDatabase, listRepositoriesDatabase, getListRepositoriesDatabase } = useRepositoryData();
+  const { nameOfRepository } = useBottomSheet();
+
+  async function getRepos() {
+    try {
+      console.log(nameOfRepository)
+      
+      if(nameOfRepository !== "") {
+
+        const returnDataRepos = await requestDataRepository(nameOfRepository);
+        
+        if(returnDataRepos) {
+          const returnReposListWithoutFavorities = returnFilteredListRepos(returnDataRepos);
+  
+          if(returnReposListWithoutFavorities) {
+            setListRepositories(returnReposListWithoutFavorities);
+          }
+        }
+      }
+
+    } catch (error) {
+      showToast("error", "Erro", `Não foi possível listar os repositórios!`);
+    }
+  } 
+
 
   async function requestDataRepository(repository: string) {
     try {
@@ -97,7 +122,8 @@ export function useRepository() {
     removeRepositoryOfList,
     returnFilteredListRepos,
     handleFavorite,
-    handleUnfavorite
+    handleUnfavorite,
+    getRepos
   }
 
 }
