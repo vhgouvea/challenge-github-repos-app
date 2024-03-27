@@ -37,12 +37,6 @@ export const Icon = styled(FontAwesome6)`
   font-size: ${RFValue(24)}px;
 `;
 
-export const Img = styled.Image`
-  width: ${RFValue(24)}px;
-  height: ${RFValue(24)}px;
-`;
-
-
 export const ContentBottomSheet = styled.View`
   background-color: ${({ theme }) => theme.colors.white };
   height: ${RFValue(162)}px;

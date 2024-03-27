@@ -13,7 +13,8 @@ export default {
     custom_red: '#F22828',
     custom_grey: '#00000099',
     custom_blue: '#1976D2',
-    custom_light_grey: '#DADADA'
+    custom_light_grey: '#DADADA',
+    input_bg: '#0000000F'
   },
   fonts: {
     inter_regular: 'Inter_400Regular',

@@ -8,8 +8,7 @@ import {
   ContentButtonBottomSheet, 
   HeaderText, 
   Icon, 
-  IconButton, 
-  Img,
+  IconButton,
   TitleBottomSheet
 } from "./styles";
 
@@ -54,6 +53,7 @@ export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Prop
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={snapPoints}
+        style={{padding: 16, gap: 10 }}
       >
         <ContentBottomSheet>
 

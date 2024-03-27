@@ -14,9 +14,8 @@ interface Props extends BottomTabBarButtonProps {
 
 const TabBarButton = ({ children, onPress, routeName }: Props) => {
   const navigation = useNavigation();
-  const [borderTop, setBorderTop] = useState();
-  const { colors, fonts } = useTheme();
-  const currentRoute = useNavigationState(state => state.routes[state.index].name); // Obtém a rota atual
+  const { colors } = useTheme();
+  const currentRoute = useNavigationState(state => state.routes[state.index].name);
 
 
   const getTabBarLabel = (routeName: string) => {

@@ -57,10 +57,10 @@ export const Elipse = styled.View`
 
 
 export const DescriptionElipse = styled.Text`
-  font-size: ${RFValue(16)}px;
+  font-size: ${RFValue(14)}px;
   font-family: ${({ theme }) => theme.fonts.inter_regular};
   color: ${({ theme }) => theme.colors.text_description};
-  line-height: ${RFValue(19.36)}px;
+  line-height: ${RFValue(16.94)}px;
   text-align: left;
 
 `;

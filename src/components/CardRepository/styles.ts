@@ -7,8 +7,8 @@ export const Container = styled.TouchableOpacity`
   border-radius: ${RFValue(4)}px;
   background-color: ${({ theme }) => theme.colors.white };
   padding: ${RFValue(12)}px ${RFValue(16)}px ${RFValue(12)}px ${RFValue(16)}px;
-  margin-bottom: ${RFValue(10)}px;
   gap: ${RFValue(16)}px;
+  margin-bottom: ${RFValue(10)}px;
 `;
 
 export const ContentHeader = styled.View`
@@ -29,7 +29,7 @@ export const Line = styled.View`
   height: ${RFValue(0)}px;
   border: ${RFValue(1)}px solid ${({ theme }) => theme.colors.custom_light_grey};
   opacity: 0.9;
-  transform: rotate(0deg); /* Defina o ângulo de rotação conforme necessário */
+  transform: rotate(0deg);
 `;
 
 export const Description = styled.Text`

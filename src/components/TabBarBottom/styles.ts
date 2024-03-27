@@ -6,13 +6,15 @@ export const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  height: ${RFValue(56)}px;
 `;
 
 export const ItemTab = styled.TouchableOpacity`
   width: 100%;
+  height: ${RFValue(56)}px;
+  padding: ${RFValue(6)}px ${RFValue(12)}px ${RFValue(8)}px ${RFValue(12)}px;
   align-items: center;
   justify-content: center;
-  border-top: 2px solid;
 `;
 
 export const Icon = styled(FontAwesome)`
@@ -22,7 +24,8 @@ export const Icon = styled(FontAwesome)`
 `;
 
 export const Text = styled.Text`
-  font-size: ${RFValue(12)}px;
-  line-height: ${RFValue(19.92)}px;
+  align-items: center;
+  font-size: ${RFValue(14)}px;
+  line-height: ${RFValue(23.24)}px;
   font-family: ${({ theme }) => theme.fonts.roboto_regular};
 `;

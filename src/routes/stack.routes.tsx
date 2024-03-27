@@ -7,6 +7,7 @@ import { Details } from '@screens/Details';
 import { AppRoutes } from './app.routes';
 import { RepositoryModel } from '@database/models/RepositoryModel';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
+import { ViewStyle } from 'react-native';
 
 
 export type RootStackParamList = {
