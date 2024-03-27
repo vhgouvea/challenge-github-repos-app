@@ -19,7 +19,7 @@ type Props = NativeStackScreenProps<ParamListBase>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function StackRoutes({ route, navigation }: Props) {
+export default function StackRoutes() {
   const { colors, fonts } = useTheme();
 
   return (

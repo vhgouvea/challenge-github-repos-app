@@ -8,7 +8,6 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {/* <AppRoutes /> */}
       <StackRoutes />
     </NavigationContainer>
     )
