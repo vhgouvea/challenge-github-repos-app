@@ -1,41 +1,22 @@
 import React, { useCallback, useMemo, useRef } from "react";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 import { 
   Container, 
-  Content, 
-  ContentBottomSheet, 
-  ContentButtonBottomSheet, 
+  Content,
   HeaderText, 
   Icon, 
   IconButton,
-  TitleBottomSheet
 } from "./styles";
+import { useBottomSheet } from "@context/useBottomSheet";
 
-import { CustomButton } from "../CustomButton";
-import { CustomInput } from "../CustomInput";
 
-interface Props {
-  getRepos: (param: string) => void;
-  setParamGetRepos: (param: string) => void;
-  paramGetRepos: string;
-}
-
-export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Props) {
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-  const snapPoints = useMemo(() => ['50%'], []);
-
+export function CustomHeader() {
+  const { setOpen } = useBottomSheet();
+  
 
   const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
+    setOpen(true);
   }, []);
-
-  const updateRepository = useCallback(async() => {
-    getRepos(paramGetRepos)
-    bottomSheetModalRef.current?.close()
-    setParamGetRepos('');
-  }, [paramGetRepos])
 
 
   return (
@@ -49,30 +30,6 @@ export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Prop
         <Icon name="gear"/>
       </IconButton>
 
-
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={0}
-        snapPoints={snapPoints}
-        style={{padding: 16, gap: 10 }}
-      >
-        <ContentBottomSheet>
-
-          <TitleBottomSheet>Alterar usuário selecionado</TitleBottomSheet>
-
-          <CustomInput 
-            onChangeText={setParamGetRepos}
-            value={paramGetRepos}
-            placeholder="Nome do usuário"
-            keyboardType="default"
-          />
-          <ContentButtonBottomSheet>
-            <CustomButton width={`${48.5}%`} loading={false} onPress={() => {bottomSheetModalRef.current?.close()}} title="Cancelar" invertColors={true}/>
-            <CustomButton width={`${48.5}%`} loading={false} onPress={updateRepository} title="Salvar" invertColors={false}/>
-          </ContentButtonBottomSheet>
-        </ContentBottomSheet>
-        
-      </BottomSheetModal>
     </Container>
   );
 }
