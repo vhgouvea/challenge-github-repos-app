@@ -34,6 +34,7 @@ export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Prop
   const updateRepository = useCallback(async() => {
     getRepos(paramGetRepos)
     bottomSheetModalRef.current?.close()
+    setParamGetRepos('');
   }, [paramGetRepos])
 
 
