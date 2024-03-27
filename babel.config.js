@@ -1,11 +1,11 @@
 module.exports = function(api) {
   api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
+    presets: ['module:metro-react-native-babel-preset'],
     plugins: [
       'react-native-reanimated/plugin',
-      "module-resolver", {
-        root: ["./src"],
+      ['module-resolver', {
+        root: ['./src'],
         alias: {
           '@assets': './src/assets',
           '@components': './src/components',
@@ -15,9 +15,9 @@ module.exports = function(api) {
           '@interfaces': './src/interfaces',
           '@routes': './src/routes',
           '@screens': './src/screens',
-          '@theme': './src/theme',
+          '@theme': './src/theme'
         }
-      }
-    ],
+      }]
+    ]
   };
 };
