@@ -1,14 +1,23 @@
-import { RouteProp } from "@react-navigation/native";
-import { RootStackParamList } from "../../routes/stack.routes";
-import { Container, Content, ContentElipse, ContentFooter, ContentTitle, Description, DescriptionElipse, Elipse, Title, TitleBold } from "./styles";
-import { CustomButton } from "../../components/CustomButton";
-import { Linking } from "react-native";
-import { useTheme } from "styled-components";
-import { CustomButtonWithIcon } from "../../components/CustomButtonWithIcon";
 import { useCallback, useState } from "react";
-import { CustomSimpleButtonWithIcon } from "../../components/CustomSimpleButtonWithIcon";
-import { useRepositoryData } from "../../context/useRepositoryData";
-import { useRepository } from "../../hooks/useRepository";
+import { Linking } from "react-native";
+import { RouteProp } from "@react-navigation/native";
+import { 
+  Container, 
+  Content, 
+  ContentElipse, 
+  ContentFooter, 
+  ContentTitle, 
+  Description, 
+  DescriptionElipse, 
+  Elipse, 
+  Title, 
+  TitleBold 
+} from "./styles";
+
+import { RootStackParamList } from "@routes/stack.routes";
+import { CustomButtonWithIcon } from "@components/CustomButtonWithIcon";
+import { CustomSimpleButtonWithIcon } from "@components/CustomSimpleButtonWithIcon";
+import { useRepository } from "@hooks/useRepository";
 
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Detalhes'>;

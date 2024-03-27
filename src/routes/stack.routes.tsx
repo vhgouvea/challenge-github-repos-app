@@ -1,11 +1,11 @@
 import React from 'react';
-import { NativeStackNavigationProp, NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
-
-
-import { Details } from '../screens/Details';
-import { AppRoutes } from './app.routes';
 import { useTheme } from 'styled-components';
-import { RepositoryModel } from '../database/models/RepositoryModel';
+import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+import { Details } from '@screens/Details';
+import { AppRoutes } from './app.routes';
+import { RepositoryModel } from '@database/models/RepositoryModel';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
 
 

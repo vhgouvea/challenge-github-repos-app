@@ -8,10 +8,8 @@ import React, {
   useCallback,
 } from 'react';
 
-import { RepositoryModel } from '../../database/models/RepositoryModel';
-import { useApi } from '../useApi';
-import { IRepository } from "../../interfaces/IRepository"
-import { TblRepository } from '../../database/tables/TblRepository';
+import { RepositoryModel } from '@database/models/RepositoryModel';
+import { TblRepository } from '@database/tables/TblRepository';
 
 type RepositoryDataContextType = {
   setListRepositories: (list: RepositoryModel[]) => void;

@@ -1,9 +1,8 @@
-import { useState } from "react"
-import { IRepository } from "../../interfaces/IRepository"
-import { useApi } from "../../context/useApi";
-import { RepositoryModel } from "../../database/models/RepositoryModel";
-import { useRepositoryData } from "../../context/useRepositoryData";
-import { TblRepository } from "../../database/tables/TblRepository";
+import { IRepository } from "@interfaces/IRepository"
+import { useApi } from "@context/useApi";
+import { RepositoryModel } from "@database/models/RepositoryModel";
+import { useRepositoryData } from "@context/useRepositoryData";
+import { TblRepository } from "@database/tables/TblRepository";
 
 
 

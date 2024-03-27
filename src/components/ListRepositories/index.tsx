@@ -1,5 +1,5 @@
 import { FlatListProps } from "react-native";
-import { RepositoryModel } from "../../database/models/RepositoryModel";
+import { RepositoryModel } from "@database/models/RepositoryModel";
 import { RepositoryList } from "./styles";
 
 interface Props {

@@ -1,13 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import { Container, Content, ContentFlatList, Text } from "./styles";
-import { ListRepositories } from "../../components/ListRepositories";
-import { RepositoryModel } from "../../database/models/RepositoryModel";
-import { CardRepository } from "../../components/CardRepository";
-import { CustomHeader } from "../../components/CustomHeader";
-import { useRepository } from "../../hooks/useRepository";
-import { useRepositoryData } from "../../context/useRepositoryData";
-import { TblRepository } from "../../database/tables/TblRepository";
+import { Container, Content, ContentFlatList } from "./styles";
+import { ListRepositories } from "@components/ListRepositories";
+import { RepositoryModel } from "@database/models/RepositoryModel";
+import { CardRepository } from "@components/CardRepository";
+import { CustomHeader } from "@components/CustomHeader";
+import { useRepository } from "@hooks/useRepository";
+import { useRepositoryData } from "@context/useRepositoryData";
 
 
 export function Home() {

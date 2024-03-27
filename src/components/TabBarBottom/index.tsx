@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
-import { Container, Icon, ItemTab, Text } from './styles';
-import { ParamListBase, RouteProp, useNavigation, useNavigationState } from '@react-navigation/native';
+import { Container, ItemTab, Text } from './styles';
+import { useNavigation, useNavigationState } from '@react-navigation/native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 

@@ -1,5 +1,4 @@
-import { DimensionValue, KeyboardTypeOptions } from "react-native";
-import { Loading } from "../Loading";
+import { KeyboardTypeOptions } from "react-native";
 import { Container } from "./styles";
 
 interface Props {
