@@ -7,6 +7,8 @@ import { useTheme } from "styled-components";
 import { CustomButtonWithIcon } from "../../components/CustomButtonWithIcon";
 import { useCallback, useState } from "react";
 import { CustomSimpleButtonWithIcon } from "../../components/CustomSimpleButtonWithIcon";
+import { useRepositoryData } from "../../context/useRepositoryData";
+import { useRepository } from "../../hooks/useRepository";
 
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Detalhes'>;
@@ -15,7 +17,9 @@ interface DetailsProps {
   route: DetailsScreenRouteProp;
 }
 export function Details({ route }: DetailsProps) {
+  const { handleFavorite, handleUnfavorite } = useRepository();
   const [favorite, setFavorite] = useState<boolean>(true);
+
   const steps = route.params.repository.full_name.split('/');
 
   async function navigateToRepository() {
@@ -23,8 +27,17 @@ export function Details({ route }: DetailsProps) {
   }
 
   const handleFavoriteRepository = useCallback(() => {
-    console.log(favorite, 'favoritar')
+
+    if(!favorite) {
+      console.log('favoritou')
+      handleFavorite(route.params.repository);
+    } else {
+      console.log('desfavoritou')
+      handleUnfavorite(route.params.repository);
+    }
+
   }, [favorite])
+
 
   return (
     <Container>

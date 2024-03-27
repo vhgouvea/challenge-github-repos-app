@@ -28,9 +28,8 @@ export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Prop
 
   const bottomSheetRef = useRef<BottomSheetMethods>(null);
 
-  // variables
-  // const snapPoints = useMemo(() => ['38%'], []);
   const snapPoints = useMemo(() => ['25%'], []);
+
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
@@ -58,7 +57,7 @@ export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Prop
       </Content>
 
       <IconButton onPress={handlePresentModalPress}>
-        <Img source={Gear} resizeMode="contain"/>
+        <Icon name="gear"/>
       </IconButton>
 
 
