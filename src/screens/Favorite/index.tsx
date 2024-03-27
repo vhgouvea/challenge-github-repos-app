@@ -7,14 +7,20 @@ import { CustomHeader } from "../../components/CustomHeader";
 import { RepositoryModel } from "../../database/models/RepositoryModel";
 import { CardRepository } from "../../components/CardRepository";
 import { ListRepositories } from "../../components/ListRepositories";
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 
 
 export function Favorite() {
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const { listRepositoriesDatabase, getListRepositoriesDatabase } = useRepositoryData();
 
   useEffect(() => {
     getListRepositoriesDatabase();
   }, [])
+
+  function navigateToDetails(repository: RepositoryModel) {
+    navigate('Detalhes', { repository: repository });
+  }
 
   const renderCards =  useCallback(({item}: {item: RepositoryModel}) => { 
     return(
@@ -22,7 +28,7 @@ export function Favorite() {
         dataRepository={item} 
         disabled={false}
         favorite={() => {}}
-        showDetails={() => {}}
+        showDetails={() => {navigateToDetails(item)}}
       />
   )}, []);
 

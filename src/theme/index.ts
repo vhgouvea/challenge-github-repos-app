@@ -5,6 +5,7 @@ export default {
     text_title: '#070707',
     text_description: '#9A9A9A',
     text_black: '#000000',
+    text_white: '#FFFFFFDE',
 
     yellow_bg: '#FAF3DC',
     dark_yellow: '#FFD02C',

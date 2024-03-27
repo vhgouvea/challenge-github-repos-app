@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 import { Container, Icon, ItemTab, Text } from './styles';
 import { ParamListBase, RouteProp, useNavigation, useNavigationState } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 
 
@@ -35,7 +35,7 @@ const TabBarButton = ({ children, onPress, routeName }: Props) => {
       case 'Home':
         return <AntDesign name="github" color={routeName === currentRoute ? colors.custom_blue : colors.custom_grey} size={24} />;
       case 'Favorite':
-        return <AntDesign name="star" color={routeName === currentRoute ? colors.custom_blue : colors.custom_grey} size={24} />;
+        return <MaterialIcons name="star" color={routeName === currentRoute ? colors.custom_blue : colors.custom_grey} size={24} />;
       default:
         return null;
     }
