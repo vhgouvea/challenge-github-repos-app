@@ -7,6 +7,7 @@ import TabBarButton from "@components/TabBarBottom";
 
 import { Favorite } from "@screens/Favorite";
 import { Home } from "@screens/Home";
+import { CustomHeader } from "@components/CustomHeader";
 
 export type RootTabParamList = {
   Home: undefined;
@@ -23,7 +24,7 @@ export function AppRoutes() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
-        // header: () => <CustomHeader />,
+        header: () => <CustomHeader />,
         tabBarIcon: ({ color, size }) => {
           switch (route.name) {
             case 'Home':
@@ -34,7 +35,7 @@ export function AppRoutes() {
               return null;
           }
         },
-        headerShown: false,
+        headerShown: true,
         headerTransparent: true,
         headerTitle: '',
         tabBarButton: props => <TabBarButton routeName={route.name} {...props}/>,
