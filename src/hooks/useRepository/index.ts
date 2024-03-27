@@ -36,76 +36,50 @@ export function useRepository() {
   }
 
   function removeRepositoryOfList(id: number) {
-    console.log(id, 'id adicionado')
     const newListRepos = listRepositories.filter(repo => repo.id !== id);
-
     setListRepositories(newListRepos);
   }
 
   function removeRepositoryOfListDB(id: number) {
-    console.log(id, 'id que adicionei')
-
     const newListReposDB = listRepositoriesDatabase.filter(repoDb => repoDb.id !== id);
-
     setListRepositoriesDatabase(newListReposDB)
 
   }
 
 
   function returnFilteredListRepos(list: RepositoryModel[]) {
-    try {
-      const jsonRepositories = TblRepository.getString('tblRepository');
+    const jsonRepositories = TblRepository.getString('tblRepository');
 
-      const getListDatabase: RepositoryModel[] = JSON.parse(jsonRepositories || '[]');
-  
+    const getListDatabase: RepositoryModel[] = JSON.parse(jsonRepositories || '[]');
 
-      const newListRepos = list.filter(repo => !getListDatabase.some(dbRepo => dbRepo.id === repo.id));
-  
+    const newListRepos = list.filter(repo => !getListDatabase.some(dbRepo => dbRepo.id === repo.id));
 
-      return newListRepos;
-    } catch (error) {
-      console.error('Erro ao filtrar repositórios:', error);
-    }
+    return newListRepos;
   }
 
   const handleFavorite = (item: RepositoryModel) => {
-    try {
-      console.log('fui chamado "CardRepos 2"')
-      const jsonRepositories = TblRepository.getString('tblRepository');
+    const jsonRepositories = TblRepository.getString('tblRepository');
 
-      const getListFavorities: RepositoryModel[] = JSON.parse(jsonRepositories || '[]');
-  
-      const addNewRepo = [...getListFavorities, item];
+    const getListFavorities: RepositoryModel[] = JSON.parse(jsonRepositories || '[]');
 
-      TblRepository.set('tblRepository', JSON.stringify(addNewRepo));
-  
-      getListRepositoriesDatabase();
+    const addNewRepo = [...getListFavorities, item];
 
-      removeRepositoryOfList(item.id)
-      console.log('fui chamado "CardRepos 3"')
+    TblRepository.set('tblRepository', JSON.stringify(addNewRepo));
 
-    } catch (error) {
+    getListRepositoriesDatabase();
 
-    }
+    removeRepositoryOfList(item.id)
   };
 
   const handleUnfavorite = (item: RepositoryModel) => {
-    try {
-    // Buscar os registros salvos na TblRepository
     const jsonRepositories = TblRepository.getString('tblRepository');
 
     const listRepositoriesDB: RepositoryModel[] = JSON.parse(jsonRepositories || '[]');
 
-    // Remover o item da lista de registros
     const filteredListDB = listRepositoriesDB.filter(repo => repo.id !== item.id);
 
-    // Atualizar a TblRepository com a lista filtrada em formato de string JSON
     TblRepository.set('tblRepository', JSON.stringify(filteredListDB));
 
-    // // // Remover o item da lista de registros
-    // const filteredList = listRepositories.filter(repo => repo.id !== item.id);
-
-    // Adicionar novamente o item à lista de registros
     const newListRepositories = [...listRepositories, item];
 
     setListRepositories(newListRepositories);
@@ -113,12 +87,6 @@ export function useRepository() {
     getListRepositoriesDatabase();
 
     removeRepositoryOfListDB(item.id);
-
-  
-      console.log('Item removido e lista atualizada com sucesso:', item);
-    } catch (error) {
-      console.error('Erro ao remover item e atualizar lista:', error);
-    }
   };
 
 

@@ -29,27 +29,18 @@ interface Props {
 }
 
 export function CustomHeader({ getRepos, setParamGetRepos, paramGetRepos }: Props) {
-
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-  // variables
   const snapPoints = useMemo(() => ['50%'], []);
 
-  // callbacks
+  
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
 
   const updateRepository = useCallback(async() => {
-    try {
-
-      getRepos(paramGetRepos)
-      bottomSheetModalRef.current?.close()
-
-    } catch (error) {
-
-    }
-
+    getRepos(paramGetRepos)
+    bottomSheetModalRef.current?.close()
   }, [paramGetRepos])
 
 

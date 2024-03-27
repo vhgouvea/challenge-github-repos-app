@@ -29,10 +29,8 @@ export function Details({ route }: DetailsProps) {
   const handleFavoriteRepository = useCallback(() => {
 
     if(!favorite) {
-      console.log('favoritou')
       handleFavorite(route.params.repository);
     } else {
-      console.log('desfavoritou')
       handleUnfavorite(route.params.repository);
     }
 

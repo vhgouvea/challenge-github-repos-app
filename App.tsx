@@ -30,7 +30,7 @@ export default function App() {
         <ApiProvider>
           <RepositoryDataProvider>
             <BottomSheetModalProvider>
-              {fontsLoaded ? <Routes /> : <ActivityIndicator />}
+              <Routes /> 
             </BottomSheetModalProvider>
           </RepositoryDataProvider>
         </ApiProvider>
