@@ -7,9 +7,11 @@ import { CardRepository } from "@components/CardRepository";
 import { CustomHeader } from "@components/CustomHeader";
 import { useRepository } from "@hooks/useRepository";
 import { useRepositoryData } from "@context/useRepositoryData";
+import useToast from "@hooks/useToast";
 
 
 export function Home() {
+  const { showToast } = useToast();
   const { requestDataRepository, handleFavorite, returnFilteredListRepos } = useRepository();
   const { setListRepositories, listRepositories } = useRepositoryData();
   const [paramGetRepos, setParamGetRepos] = useState<string>("");
@@ -29,7 +31,7 @@ export function Home() {
       }
 
     } catch (error) {
-
+      showToast("error", "Erro", `Não foi possível listar os repositórios!`);
     }
   } 
 

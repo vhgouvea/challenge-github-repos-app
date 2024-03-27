@@ -3,11 +3,13 @@ import { useApi } from "@context/useApi";
 import { RepositoryModel } from "@database/models/RepositoryModel";
 import { useRepositoryData } from "@context/useRepositoryData";
 import { TblRepository } from "@database/tables/TblRepository";
+import useToast from "@hooks/useToast";
 
 
 
 export function useRepository() {
   const { apiRequest } = useApi();
+  const { showToast } = useToast();
   const { listRepositories, setListRepositories, setListRepositoriesDatabase, listRepositoriesDatabase, getListRepositoriesDatabase } = useRepositoryData();
 
   async function requestDataRepository(repository: string) {
@@ -30,7 +32,7 @@ export function useRepository() {
       return listRepos;
 
     } catch (error) {
-
+      showToast("error", "Erro", `Erro ao buscar repositórios!`);
     }
   }
 

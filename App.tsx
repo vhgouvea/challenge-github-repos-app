@@ -13,6 +13,7 @@ import theme from '@theme/index';
 import { Routes } from '@routes/index';
 import { ApiProvider } from '@context/useApi';
 import { RepositoryDataProvider } from '@context/useRepositoryData';
+import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 
 export default function App() {
 
@@ -22,6 +23,62 @@ export default function App() {
     Roboto_400Regular,
     Roboto_500Medium
   })
+
+
+  const toastConfig = {
+    success: (props: any) => (
+      <BaseToast
+      {...props}
+        style={{ borderLeftColor: '#90e1a7', height: 80, width: '90%' }}
+        contentContainerStyle={{ paddingLeft: 25 }}
+        text1Style={{
+          flexWrap: "wrap",
+          fontSize: 15,
+          color: '#1b873d'
+        }}
+        text2Style={{
+          flexWrap: "wrap",
+          fontSize: 13,        
+          color: '#111' 
+        }}
+      />
+    ),
+
+    error: (props: any) => (
+      <ErrorToast
+        {...props}
+        style={{ borderLeftColor: '#ff8989', height: 80, width: '90%' }}
+        text1Style={{
+          flexWrap: "wrap",
+          fontSize: 15,
+          color: 'red'
+        }}
+        text2Style={{
+          flexWrap: "wrap",
+          fontSize: 13,
+          color: '#111'
+        }}
+      />
+    ),
+  
+    warning: (props: any) => (
+      <ErrorToast
+        {...props}
+        style={{ borderLeftColor: '#ffca72', height: 80, width: '90%'}}
+        text1Style={{
+          flexWrap: "wrap",
+          fontSize: 15,
+          color: 'orange'
+        }}
+        text2Style={{
+          flexWrap: "wrap",
+          fontSize: 13,
+          color: '#111'
+        }}
+      />
+    )
+  };
+
   
   return (
     <ThemeProvider theme={theme}>
@@ -30,6 +87,7 @@ export default function App() {
           <RepositoryDataProvider>
             <BottomSheetModalProvider>
               <Routes /> 
+              <Toast config={toastConfig}/>
             </BottomSheetModalProvider>
           </RepositoryDataProvider>
         </ApiProvider>
