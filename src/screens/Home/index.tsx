@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container, Content, ContentFlatList } from "./styles";
 import { ListRepositories } from "@components/ListRepositories";
@@ -7,34 +7,15 @@ import { CardRepository } from "@components/CardRepository";
 import { CustomHeader } from "@components/CustomHeader";
 import { useRepository } from "@hooks/useRepository";
 import { useRepositoryData } from "@context/useRepositoryData";
-import useToast from "@hooks/useToast";
+import { CustomBottomSheet } from "@components/CustomBottomSheet";
+import { useBottomSheet } from "@context/useBottomSheet";
 
 
 export function Home() {
-  const { showToast } = useToast();
-  const { requestDataRepository, handleFavorite, returnFilteredListRepos } = useRepository();
-  const { setListRepositories, listRepositories } = useRepositoryData();
-  const [paramGetRepos, setParamGetRepos] = useState<string>("");
+  const { isOpen } = useBottomSheet();
+  const { handleFavorite } = useRepository();
+  const { listRepositories } = useRepositoryData();
   
-
-  async function getRepos() {
-    try {
-
-      const returnDataRepos = await requestDataRepository(paramGetRepos);
-      
-      if(returnDataRepos) {
-        const returnReposListWithoutFavorities = returnFilteredListRepos(returnDataRepos);
-
-        if(returnReposListWithoutFavorities) {
-          setListRepositories(returnReposListWithoutFavorities);
-        }
-      }
-
-    } catch (error) {
-      showToast("error", "Erro", `Não foi possível listar os repositórios!`);
-    }
-  } 
-
 
   const renderCards = ({item}: {item: RepositoryModel}) => (
     <CardRepository 
@@ -47,7 +28,7 @@ export function Home() {
 
   return (
     <Container>
-      <CustomHeader getRepos={getRepos} setParamGetRepos={setParamGetRepos} paramGetRepos={paramGetRepos}/>
+      <CustomHeader />
       <Content>
         <ContentFlatList>
           <ListRepositories 
@@ -56,6 +37,7 @@ export function Home() {
           />
         </ContentFlatList>
       </Content>
+      {isOpen && <CustomBottomSheet />}
     </Container>
   )
 }
