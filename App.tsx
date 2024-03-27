@@ -1,6 +1,5 @@
 import { ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import {
   useFonts,
   Inter_400Regular,
@@ -14,6 +13,7 @@ import { Routes } from '@routes/index';
 import { ApiProvider } from '@context/useApi';
 import { RepositoryDataProvider } from '@context/useRepositoryData';
 import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
+import { BottomSheetProvider } from '@context/useBottomSheet';
 
 export default function App() {
 
@@ -85,10 +85,10 @@ export default function App() {
       <GestureHandlerRootView style={{flex: 1}}>
         <ApiProvider>
           <RepositoryDataProvider>
-            <BottomSheetModalProvider>
+            <BottomSheetProvider>
               <Routes /> 
               <Toast config={toastConfig}/>
-            </BottomSheetModalProvider>
+            </BottomSheetProvider>
           </RepositoryDataProvider>
         </ApiProvider>
       </GestureHandlerRootView>
