@@ -11,15 +11,15 @@ import { TblRepository } from "../../database/tables/TblRepository";
 
 
 export function Home() {
-  const { requestDataRepository, removeRepositoryOfList, returnFilteredListRepos } = useRepository();
-  const { setListRepositories, listRepositories, getListRepositoriesDatabase } = useRepositoryData();
+  const { requestDataRepository, handleFavorite, returnFilteredListRepos } = useRepository();
+  const { setListRepositories, listRepositories } = useRepositoryData();
   const [paramGetRepos, setParamGetRepos] = useState<string>("");
   
+
   async function getRepos() {
     try {
 
       const returnDataRepos = await requestDataRepository(paramGetRepos);
-
       
       if(returnDataRepos) {
         const returnReposListWithoutFavorities = returnFilteredListRepos(returnDataRepos);
@@ -27,32 +27,12 @@ export function Home() {
         if(returnReposListWithoutFavorities) {
           setListRepositories(returnReposListWithoutFavorities);
         }
-
       }
 
     } catch (error) {
 
     }
   } 
-
-  const handleFavorite = (item: RepositoryModel) => {
-    try {
-      const jsonRepositories = TblRepository.getString('tblRepository');
-
-      const getListFavorities: RepositoryModel[] = JSON.parse(jsonRepositories || '[]');
-  
-      const addNewRepo = [...getListFavorities, item];
-
-      TblRepository.set('tblRepository', JSON.stringify(addNewRepo));
-  
-      getListRepositoriesDatabase();
-
-      removeRepositoryOfList(item.id)
-
-    } catch (error) {
-
-    }
-  };
 
 
   const renderCards = ({item}: {item: RepositoryModel}) => (
@@ -63,7 +43,6 @@ export function Home() {
       showDetails={() => {}}
     />
   )
-
 
   return (
     <Container>

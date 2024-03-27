@@ -28,6 +28,7 @@ export function CardRepository({ dataRepository, disabled, favorite, showDetails
   const { colors } = useTheme();
 
   const handleFavorite = () => {
+    console.log('fui chamado "CardRepos"')
     favorite(dataRepository);
   };
 
