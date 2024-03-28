@@ -1,5 +1,5 @@
 import { KeyboardTypeOptions } from "react-native";
-import { Container, Content } from "./styles";
+import { Container, Content, Label } from "./styles";
 
 interface Props {
   onChangeText:(text: string) => void;
@@ -11,10 +11,10 @@ interface Props {
 export function CustomInput({onChangeText, value, placeholder, keyboardType}: Props) {
   return (
     <Container>
+      <Label>Nome do usuário</Label>
       <Content 
         onChangeText={onChangeText}
         value={value}
-        placeholder={placeholder}
         keyboardType={keyboardType}
       />
     </Container>

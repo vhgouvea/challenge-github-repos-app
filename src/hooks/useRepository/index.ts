@@ -12,11 +12,10 @@ export function useRepository() {
   const { apiRequest } = useApi();
   const { showToast } = useToast();
   const { listRepositories, setListRepositories, setListRepositoriesDatabase, listRepositoriesDatabase, getListRepositoriesDatabase } = useRepositoryData();
-  const { nameOfRepository } = useBottomSheet();
+  const { nameOfRepository, setNameOfRepository } = useBottomSheet();
 
   async function getRepos() {
     try {
-      console.log(nameOfRepository)
       
       if(nameOfRepository !== "") {
 
@@ -30,7 +29,7 @@ export function useRepository() {
           }
         }
       }
-
+      setNameOfRepository("");
     } catch (error) {
       showToast("error", "Erro", `Não foi possível listar os repositórios!`);
     }

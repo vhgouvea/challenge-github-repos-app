@@ -69,7 +69,7 @@ export const ContentStargazers = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: ${RFValue(34)}px;
+  width: ${RFValue(50)}px;
   height: ${RFValue(20)}px;
   gap: ${RFValue(6)}px;
 `;

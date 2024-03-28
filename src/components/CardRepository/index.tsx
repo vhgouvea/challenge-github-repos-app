@@ -32,6 +32,14 @@ export function CardRepository({ dataRepository, disabled, favorite, showDetails
     favorite(dataRepository);
   };
 
+  const validateAmountOfCharacters = () => {
+    if(dataRepository.description.length > 90) {
+      return dataRepository.description.substring(0, 90) + "...";
+    } else {
+      return dataRepository.description;
+    }
+  }
+
   return (
     <Container onPress={showDetails} disabled={disabled}>
       <ContentHeader>
@@ -39,7 +47,7 @@ export function CardRepository({ dataRepository, disabled, favorite, showDetails
         <Img source={{uri: dataRepository.avatar_url }} resizeMode="contain"/>
       </ContentHeader>
       <Line />
-      <Description>{dataRepository.description !== null ? dataRepository.description : "Nenhuma descrição encontrada"}</Description>
+      <Description>{dataRepository.description !== null ? validateAmountOfCharacters() : "Nenhuma descrição encontrada"}</Description>
       <ContentFooter>
         {disabled && (
           <Button onPress={handleFavorite}>

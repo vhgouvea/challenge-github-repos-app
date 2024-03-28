@@ -12,7 +12,7 @@ import theme from '@theme/index';
 import { Routes } from '@routes/index';
 import { ApiProvider } from '@context/useApi';
 import { RepositoryDataProvider } from '@context/useRepositoryData';
-import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
+import Toast, { BaseToast, BaseToastProps, ErrorToast } from 'react-native-toast-message';
 import { BottomSheetProvider } from '@context/useBottomSheet';
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
 
 
   const toastConfig = {
-    success: (props: any) => (
+    success: (props: BaseToastProps) => (
       <BaseToast
       {...props}
         style={{ borderLeftColor: '#90e1a7', height: 80, width: '90%' }}
@@ -44,7 +44,7 @@ export default function App() {
       />
     ),
 
-    error: (props: any) => (
+    error: (props: BaseToastProps) => (
       <ErrorToast
         {...props}
         style={{ borderLeftColor: '#ff8989', height: 80, width: '90%' }}
@@ -61,7 +61,7 @@ export default function App() {
       />
     ),
   
-    warning: (props: any) => (
+    warning: (props: BaseToastProps) => (
       <ErrorToast
         {...props}
         style={{ borderLeftColor: '#ffca72', height: 80, width: '90%'}}
