@@ -4,8 +4,6 @@ import { Container, ItemTab, Text } from './styles';
 import { useNavigation, useNavigationState } from '@react-navigation/native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
-import { useBottomSheet } from '@context/useBottomSheet';
-import { CustomBottomSheet } from '@components/CustomBottomSheet';
 
 
 interface Props extends BottomTabBarButtonProps {
@@ -18,7 +16,6 @@ const TabBarButton = ({ children, onPress, routeName }: Props) => {
   const navigation = useNavigation();
   const { colors } = useTheme();
   const currentRoute = useNavigationState(state => state.routes[state.index].name);
-  const { isOpen } = useBottomSheet();
 
 
   const getTabBarLabel = (routeName: string) => {
@@ -50,21 +47,15 @@ const TabBarButton = ({ children, onPress, routeName }: Props) => {
    };
 
  return (
-    <>
-      {isOpen ? (
-        <CustomBottomSheet />
-      ) : (
-        <Container>
-          <ItemTab onPress={handleNavigate} >
-            {getTabBarIcon(routeName)}
-            <Text style={{ color: routeName === currentRoute ? colors.custom_blue : colors.custom_grey }}>
-              {getTabBarLabel(routeName)}
-              </Text>
-          </ItemTab>
-        </Container>
-      )}
-    </>
-  );
+    <Container>
+      <ItemTab onPress={handleNavigate} >
+        {getTabBarIcon(routeName)}
+        <Text style={{ color: routeName === currentRoute ? colors.custom_blue : colors.custom_grey }}>
+          {getTabBarLabel(routeName)}
+          </Text>
+      </ItemTab>
+    </Container>
+ );
 };
 
 export default TabBarButton;

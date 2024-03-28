@@ -1,13 +1,11 @@
 import { useCallback, useEffect } from "react";
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 import { 
-  Container, 
-  Content, 
+  Container,
   ContentFlatList
 } from "./styles";
 
 import { useRepositoryData } from "@context/useRepositoryData";
-import { CustomHeader } from "@components/CustomHeader";
 import { CardRepository } from "@components/CardRepository";
 import { ListRepositories } from "@components/ListRepositories";
 import { RepositoryModel } from "@database/models/RepositoryModel";
@@ -37,15 +35,12 @@ export function Favorite() {
 
   return (
     <Container>
-      <CustomHeader getRepos={() => {}} setParamGetRepos={() => {}} paramGetRepos={""}/>
-      <Content>
-        <ContentFlatList>
-          <ListRepositories 
-            data={listRepositoriesDatabase}
-            renderItem={renderCards}
-          />
-        </ContentFlatList>
-      </Content>
+      <ContentFlatList>
+        <ListRepositories 
+          data={listRepositoriesDatabase}
+          renderItem={renderCards}
+        />
+      </ContentFlatList>
     </Container>
   )
 }

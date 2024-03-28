@@ -38,7 +38,7 @@ export function AppRoutes() {
         headerShown: true,
         headerTransparent: true,
         headerTitle: '',
-        tabBarButton: props => <TabBarButton routeName={route.name} {...props}/>,
+        tabBarButton: props => <TabBarButton routeName={route.name} {...props} />,
         tabBarStyle: { height: 56 }
       })}
 

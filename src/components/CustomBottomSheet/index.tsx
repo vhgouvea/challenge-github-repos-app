@@ -24,11 +24,11 @@ export function CustomBottomSheet() {
     <Modalize
       ref={modalizeRef}
       handlePosition="inside"
-      adjustToContentHeight
-      childrenStyle={{ height: 160}}
+      adjustToContentHeight={true}
       HeaderComponent={
         <HeaderComponent />
       }
+      childrenStyle={{height: 230}}
       handleStyle={{width: 30, height: 6, borderRadius: 12, backgroundColor: '#E0E0E0'}}
       onClose={() => {
         setOpen(false)

@@ -12,7 +12,7 @@ export const Container = styled.View`
 
 export const ContentFlatList = styled.View`
   width: 100%;
-  height: 95%;
+  height: 93%;
 `;
 
 export const Text = styled.Text `
